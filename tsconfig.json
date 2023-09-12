@@ -3,7 +3,11 @@
 //     "target": "ES2020",
 //     "useDefineForClassFields": true,
 //     "module": "ESNext",
-//     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+//     "lib": [
+//       "ES2020",
+//       "DOM",
+//       "DOM.Iterable"
+//     ],
 //     "skipLibCheck": true,
 //     /* Bundler mode */
 //     "moduleResolution": "bundler",
@@ -19,8 +23,14 @@
 //     "noUnusedParameters": true,
 //     "noFallthroughCasesInSwitch": true
 //   },
-//   "include": ["src"],
-//   "references": [{ "path": "./tsconfig.node.json" }]
+//   "include": [
+//     "src"
+//   ],
+//   "references": [
+//     {
+//       "path": "./tsconfig.node.json"
+//     }
+//   ]
 // }
 {
   "compilerOptions": {

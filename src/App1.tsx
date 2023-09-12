@@ -39,12 +39,13 @@ const tabs: EmojiSlice[] = ['head', 'eyes', 'eyebrows', 'mouth', 'detail']
 
 const App: Component = () => {
   const [selectedTab, setSelectedTab] = createSignal<EmojiSlice>('head')
+
   const [images, setImages] = createSignal({
-    head: [],
-    eyes: [],
-    eyebrows: [],
-    mouth: [],
-    detail: [],
+    head: [] as string[],
+    eyes: [] as string[],
+    eyebrows: [] as string[],
+    mouth: [] as string[],
+    detail: [] as string[]
   })
   const [selectedIndex, setSelectedIndex] = createSignal({
     head: 0,
@@ -105,14 +106,15 @@ const App: Component = () => {
       mouth: ['', ...fullMouthImages],
       detail: ['', ...fullDetailImages],
     })
+
     getRandom()
   }
+
+  let canvas: HTMLCanvasElement, canvasSize = 640;
 
   onMount(() => {
     loadImage()
   })
-
-  let canvas: HTMLCanvasElement, canvasSize = 640;
 
   createEffect(() => {
     const headPath = selectedImage().head
