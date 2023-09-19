@@ -7,8 +7,8 @@ export default (props) => {
       rounded-md border-none
       border border-2 cursor-pointer
       transition-colors
-      hover="bg-violet-200 dark:bg-violet-200 border-violet-400"
-      class={isHighlight() ? 'bg-violet-100 border-violet-400' : 'bg-neutral-100 dark:bg-neutral-600 border-transparent'}
+      hover="bg-violet-200 border-violet-400"
+      class={isHighlight() ? 'bg-violet-100 border-violet-400' : 'bg-neutral-100 border-transparent'}
       onClick={props.onClick}
     >
       {slot}

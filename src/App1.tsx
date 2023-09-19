@@ -110,11 +110,11 @@ const App: Component = () => {
     getRandom()
   }
 
-  let canvas: HTMLCanvasElement, canvasSize = 640;
-
   onMount(() => {
     loadImage()
   })
+
+  let canvas: HTMLCanvasElement, canvasSize = 640;
 
   createEffect(() => {
     const headPath = selectedImage().head
@@ -185,6 +185,18 @@ const App: Component = () => {
     .gap-4 {
       gap: 1rem;
     }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    在 CSS 中，"ch" 是一种相对长度单位，表示字符的宽度。一个 "ch" 单位等于当前字体设置下数字 "0" 的宽度。这个单位通常用于在网页设计中对文本进行相对于字符宽度的尺寸调整。
+    例如，如果你将一个元素的宽度设置为 "10ch"，它将等于当前字体设置下数字 "0" 的宽度乘以10。这使得元素的宽度基于当前字体的字符宽度来调整，而不是固定的像素值或其他单位。
   */
 
   return (
@@ -195,26 +207,29 @@ const App: Component = () => {
         mx-auto bg-white rounded-lg bg-op-80
         shadow="2xl black/10"
       >
-        <div flex items-center justify-center w="200px" h="200px" border-2 border-neutral-400 border-op-20 rounded-2xl>
+        <div
+          flex items-center justify-center
+          w="200px" h="200px"
+          border-2 b-solid border-neutral-400 border-op-20 rounded-2xl>
           <canvas ref={canvas} width={canvasSize} height={canvasSize} w="160px" h="160px" class="animation"></canvas>
         </div>
         <div flex h-12 gap-2>
           <button
             flex items-center justify-center w-12 rounded-full
-            bg-neutral-100 dark:bg-neutral-600
-            text-black dark:text-white border-none
+            bg-neutral-100
+            text-black border-none
             cursor-pointer transition-colors
-            hover="bg-violet-200 dark:bg-violet-400"
+            hover="bg-violet-200"
             onClick={getRandom}
           >
             <div i-material-symbols-refresh text-2xl />
           </button>
           <button
             inline-flex px-3 items-center gap-1 rounded-full
-            bg-neutral-100 dark:bg-neutral-600
-            text-black dark:text-white border-none
+            bg-neutral-100
+            text-black border-none
             cursor-pointer transition-colors
-            hover="bg-violet-200 dark:bg-violet-400"
+            hover="bg-violet-200"
             onClick={() => canvas.toBlob(exportImage)}
           >
             <div i-material-symbols-download-rounded text-2xl />
@@ -222,10 +237,10 @@ const App: Component = () => {
           </button>
           <button
             inline-flex px-3 items-center gap-1 rounded-full
-            bg-neutral-100 dark:bg-neutral-600
-            text-black dark:text-white border-none
+            bg-neutral-100
+            text-black border-none
             cursor-pointer transition-colors
-            hover="bg-violet-200 dark:bg-violet-400"
+            hover="bg-violet-200"
             onClick={() => toSVGBlob().then(exportImage)}
           >
             <div i-material-symbols-download-rounded text-2xl />
@@ -240,8 +255,8 @@ const App: Component = () => {
                   flex items-center justify-center
                   h-16 w-16 rounded-lg
                   cursor-pointer transition-colors border-none
-                  hover="bg-violet-200 dark:bg-violet-200"
-                  class={selectedTab() === item ? 'bg-violet-200 dark:bg-violet-200' : 'bg-neutral-100 dark:bg-neutral-600'}
+                  hover="bg-violet-200"
+                  class={selectedTab() === item ? 'bg-violet-200' : 'bg-neutral-100'}
                   onClick={() => setSelectedTab(item)}
                 >
                   <Show
@@ -257,13 +272,13 @@ const App: Component = () => {
             <div flex="~ wrap" gap-2 justify-center>
               <Switch>
                 <For each={Object.keys(images())}>
-                {(tab: EmojiSlice) => (
+                  {(tab: EmojiSlice) => (
                     <Match when={tab === selectedTab()}>
                       <For each={images()[tab]}>
                         {(item, index) => (
                           <SelectButton
                             highlight={() => index() === selectedIndex()[selectedTab()]}
-                            onClick={[handleSelectItem, {tab: selectedTab(), index: index() }]}
+                            onClick={[handleSelectItem, { tab: selectedTab(), index: index() }]}
                           >
                             <Show when={item}>
                               <img src={item} alt={selectedTab() + index()} h-10 w-10></img>
